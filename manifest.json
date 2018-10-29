@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "jdcoin",
+  "short_name": "jdcoin",
+  "description": "A simple chrome extension to bind coins in coin.jd.com",
+  "version": "1.0.0",
+  "background": {
+    "page": "background.html",
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://coin.jd.com/*"],
+      "js": [
+        "static/jquery-3.3.1.min.js",
+        "static/content_script.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "page_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "*://*.jd.com/*",
+    "declarativeContent",
+    "tabs"
+  ]
+}
