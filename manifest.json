@@ -10,7 +10,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://coin.jd.com/*"],
+      "matches": ["*://*.jd.com/*"],
       "js": [
         "static/jquery-3.3.1.min.js",
         "static/content_script.js"

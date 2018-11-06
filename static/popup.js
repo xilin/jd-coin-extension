@@ -13,7 +13,8 @@ function processInput() {
     var text = i.trim();
     var validLength = 19;
     if (text.length > validLength) {
-      text = text.slice(-1 * validLength);
+      var firstIndexOfHyphen = text.indexOf('-');
+      text = text.slice(firstIndexOfHyphen - 4, firstIndexOfHyphen + 15);
     }
     return text;
   });
