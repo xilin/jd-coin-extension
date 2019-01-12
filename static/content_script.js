@@ -80,7 +80,7 @@ function checkConfirm() {
         return;
       }
       confirmButton = document.getElementsByClassName('btn_1')[0];
-      closeButtonName = 'btn_1';
+      closeButtonName = 'btn_2';
     }
     clearInterval(lastInterval);
     // confirm redeem button
