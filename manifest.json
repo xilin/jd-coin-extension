@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "jdcoin",
-  "short_name": "jdcoin",
+  "name": "sncoin",
+  "short_name": "sncoin",
   "description": "A simple chrome extension to bind coins in coin.jd.com",
   "version": "1.0.0",
   "background": {
@@ -10,7 +10,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.jd.com/*"],
+      "matches": ["*://*.suning.com/*"],
       "js": [
         "static/jquery-3.3.1.min.js",
         "static/content_script.js"
@@ -23,7 +23,7 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "*://*.jd.com/*",
+    "*://*.suning.com/*",
     "declarativeContent",
     "tabs"
   ]

@@ -5,6 +5,7 @@ var PageType = {
   UNKONWN: 0,
   COIN: 1,
   ECARD: 2,
+  SN: 3,
 };
 var currentPageType = PageType.UNKONWN;
 
@@ -31,6 +32,8 @@ function pageType() {
     return PageType.ECARD;
   } else if (url.indexOf('coin') !== -1) {
     return PageType.COIN;
+  } else if (url.indexOf('mycard') !== -1) {
+    return PageType.SN;
   } else {
     return PageType.UNKONWN;
   }
@@ -50,6 +53,17 @@ function setValue(value) {
     var e = new Event('input');
     input.dispatchEvent(e);
     document.getElementsByClassName('bind_new_btn')[0].click();
+  } else if (currentPageType === PageType.SN) {
+    var values = value.split(',');
+    var cardNum = document.getElementsByClassName('cardNum')[0];
+    cardNum.value = values[0];
+    var e = new Event('input');
+    cardNum.dispatchEvent(e);
+    var pwd = document.getElementsByClassName('pwd')[0];
+    pwd.value = values[1];
+    e = new Event('input');
+    pwd.dispatchEvent(e);
+    document.getElementsByClassName('bind-btn')[0].click();
   }
 }
 
@@ -80,14 +94,24 @@ function checkConfirm() {
         return;
       }
       confirmButton = document.getElementsByClassName('btn_1')[0];
-      closeButtonName = 'btn_1';
+      closeButtonName = 'btn_2';
+    } else if (currentPageType === PageType.SN) {
+      var hasPopup = document.getElementsByClassName('ajax-result').length > 0;
+      if (!hasPopup) {
+        console.log('验证失败，未创建确认框');
+        return;
+      }
+      confirmButton = document.getElementsByClassName('ajax-result')[0].getElementsByClassName('sign-ok')[0];
+      closeButtonName = null;
     }
     clearInterval(lastInterval);
     // confirm redeem button
     confirmButton.click();
     setTimeout(() => {
       // confirm close button
-      document.getElementsByClassName(closeButtonName)[0].click();
+      if(closeButtonName) {
+        document.getElementsByClassName(closeButtonName)[0].click();
+      }
       setTimeout(fillNext, nextTimeout);
     }, confirmTimeout);
   }, checkInterval);

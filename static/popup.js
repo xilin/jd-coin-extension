@@ -11,10 +11,9 @@ function processInput() {
   var array = inputText.split(separator);
   return array.map(function (i) {
     var text = i.trim();
-    var validLength = 19;
-    if (text.length > validLength) {
-      var firstIndexOfHyphen = text.indexOf('-');
-      text = text.slice(firstIndexOfHyphen - 4, firstIndexOfHyphen + 15);
+    var validLength = 28;
+    if (text.length == validLength) {
+      text = text.substring(3, 19) + "," + text.substring(22, 28);
     }
     return text;
   });
